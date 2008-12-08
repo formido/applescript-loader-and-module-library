@@ -1,0 +1,1 @@
+do shell script "perl /Library/Scripts/ASLibraries/UnicodeIO/Components/UTF16To8.pl /Library/Scripts/ASLibraries/UnicodeIO/Tests/ucs2.txt ~/utf8.txt"
