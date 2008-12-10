@@ -1,4 +1,25 @@
-property _Loader : run application "LoaderServer"------------------------------------------------------------------------ DEPENDENCIESproperty _Conversion : missing valueproperty _String : missing valueproperty _Unicode : missing valueon __load__(loader)	set _Conversion to loader's loadLib("Conversion")	set _String to loader's loadLib("String")	set _Unicode to loader's loadLib("Unicode")end __load__----------------------------------------------------------------------__load__(_Loader's makeLoader())----------------------------------------------------------------------set t to "0080 00c4
+property _Loader : run application "LoaderServer"
+
+----------------------------------------------------------------------
+-- DEPENDENCIES
+
+property _Conversion : missing value
+property _String : missing value
+property _Unicode : missing value
+
+on __load__(loader)
+	set _Conversion to loader's loadLib("Conversion")
+	set _String to loader's loadLib("String")
+	set _Unicode to loader's loadLib("Unicode")
+end __load__
+
+----------------------------------------------------------------------
+
+__load__(_Loader's makeLoader())
+
+----------------------------------------------------------------------
+
+set t to "0080 00c4
 0081 00b9
 0082 00b2
 0083 00c9
@@ -122,4 +143,27 @@ property _Loader : run application "LoaderServer"-----------------------------
 00fb 03ca
 00fc 03cb
 00fd 0390
-00fe 03b0"set t to _String's toUpper(t)set ol to ""set nl to "" as Unicode textrepeat with p in t's paragraphs	set oe to _Conversion's shortHexToInteger(text 3 thru 4 of p)	set ne1 to _Conversion's shortHexToInteger(text 6 thru 7 of p)	set ne2 to _Conversion's shortHexToInteger(text 8 thru 9 of p)	set ol to ol & (ASCII character oe)	set nl to nl & _Unicode's uChar(ne1 * 256 + ne2)end repeatreturn {ol, nl}set s to "Turkish|Turkish|Ptesi/Sal›/Çarﬂamba/Perﬂembe/Cuma/Ctesi/Pazar|Pte/Sal/Çar/Per/Cum/Cte/Paz|Ocak/ﬁubat/Mart/Nisan/May›s/Haziran/Temmuz/A€ustos/Eylül/Ekim/Kas›m/Aral›k|Oca/ﬁub/Mar/Nis/May/Haz/Tem/A€u/Eyl/Eki/Kas/Ara"set r to "" as Unicode textrepeat with c in s	set c to c's contents	set off to _String's getFirstOffset(ol, c)	if off ≠ 0 then		set r to r & nl's item off	else		set r to r & c	end ifend repeatr
+00fe 03b0"
+set t to _String's toUpper(t)
+set ol to ""
+set nl to "" as Unicode text
+repeat with p in t's paragraphs
+	set oe to _Conversion's shortHexToInteger(text 3 thru 4 of p)
+	set ne1 to _Conversion's shortHexToInteger(text 6 thru 7 of p)
+	set ne2 to _Conversion's shortHexToInteger(text 8 thru 9 of p)
+	set ol to ol & (ASCII character oe)
+	set nl to nl & _Unicode's uChar(ne1 * 256 + ne2)
+end repeat
+return {ol, nl}
+set s to "Turkish|Turkish|Ptesi/Sal›/Çarﬂamba/Perﬂembe/Cuma/Ctesi/Pazar|Pte/Sal/Çar/Per/Cum/Cte/Paz|Ocak/ﬁubat/Mart/Nisan/May›s/Haziran/Temmuz/A€ustos/Eylül/Ekim/Kas›m/Aral›k|Oca/ﬁub/Mar/Nis/May/Haz/Tem/A€u/Eyl/Eki/Kas/Ara"
+set r to "" as Unicode text
+repeat with c in s
+	set c to c's contents
+	set off to _String's getFirstOffset(ol, c)
+	if off ≠ 0 then
+		set r to r & nl's item off
+	else
+		set r to r & c
+	end if
+end repeat
+r
