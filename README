@@ -22,9 +22,14 @@ To be announced.
 ISSUES 
 ------
 
-Yes.
+1. Since I converted all the scripts to plain text so they could usefully be under source control, I'll either need to add a build step or alter the Loader to handle that.
+2. I noticed some bonkers characters in the source files that need to be cleaned up. Not sure the source of the problem off hand.
 
 TODO 
 ----
 
-We'll see.
+1. Port more modules from other languages?
+2. Add modules to bake in recipes for popular scriptable applications?
+3. Start an AppleScript FAQ?
+4. Resolve the TODOs sprinkled in the code.
+5. Not really a Loader todo, but perhaps add repo to unit test the interface of scriptable applications.
